@@ -21,3 +21,4 @@ echo "me-key-pair-uswest2.pem" >> .gitignore
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+me-key-pair-uswest2.pem
