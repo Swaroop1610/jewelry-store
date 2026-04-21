@@ -1,0 +1,10 @@
+import goldBg from "../assets/gold-bg.png";
+
+<div
+  style={{
+    backgroundImage: `url(${goldBg})`,
+    height: "90vh",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
