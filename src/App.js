@@ -11,15 +11,12 @@ function App() {
   return (
     <CartProvider>
       <BrowserRouter>
-
         <Navbar />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>
-
         <Footer />
 
       </BrowserRouter>
