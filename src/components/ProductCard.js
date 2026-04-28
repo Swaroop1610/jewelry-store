@@ -1,30 +1,19 @@
-import { useCart } from "../context/CartContext";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
 const ProductCard = ({ product }) => {
-  const { addToCart, addToWishlist } = useCart();
-  const navigate = useNavigate();
-
   return (
-    <div style={styles.card}>
-      <img
-        src={product.image}
-        alt={product.name}
-        style={styles.image}
-        onClick={() => navigate(`/product/${product.id}`)}
-      />
-      <h3>{product.name}</h3>
-      <p>${product.price}</p>
+    <div className="product-card">
+      <div className="image-wrapper">
+        <img src={product.image} alt={product.name} />
+      </div>
 
-      <button onClick={() => addToCart(product)}>Add to Cart</button>
-      <button onClick={() => addToWishlist(product)}>❤️</button>
+      <div className="info">
+        <h3>{product.name}</h3>
+        <p className="price">${product.price}</p>
+        <button>Add to Cart</button>
+      </div>
     </div>
   );
-};
-
-const styles = {
-  card: { border: "1px solid #ddd", padding: 10, width: 200 },
-  image: { width: "100%", cursor: "pointer" }
 };
 
 export default ProductCard;

@@ -5,20 +5,28 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import { CartProvider } from "./context/CartContext";
+import { CartProvider, useCart } from "./context/CartContext";
+
+
+// 🔥 Wrapper to inject cart into ProductDetail
+const ProductDetailWrapper = () => {
+  const { addToCart } = useCart();
+  return <ProductDetail addToCart={addToCart} />;
+};
 
 function App() {
   return (
     <CartProvider>
       <BrowserRouter>
         <Navbar />
+
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/product/:id" element={<ProductDetailWrapper />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>
-        <Footer />
 
+        <Footer />
       </BrowserRouter>
     </CartProvider>
   );

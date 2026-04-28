@@ -1,159 +1,110 @@
 import React from "react";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaTwitter,
+  FaYoutube,
+  FaPinterest,
+} from "react-icons/fa";
 
 const Footer = () => {
-  const styles = {
-    footer: {
-      backgroundColor: "#b8902f",
-      color: "white",
-      fontFamily: "Poppins, sans-serif",
-    },
-    top: {
-      textAlign: "center",
-      padding: "30px",
-      borderBottom: "1px solid rgba(255,255,255,0.3)",
-    },
-    button: {
-      padding: "12px 30px",
-      border: "2px solid white",
-      background: "transparent",
-      color: "white",
-      borderRadius: "30px",
-      cursor: "pointer",
-      fontWeight: "bold",
-    },
-    container: {
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-      gap: "30px",
-      padding: "50px",
-    },
-    col: {},
-    heading: {
-      marginBottom: "15px",
-      fontSize: "16px",
-      fontWeight: "600",
-    },
-    list: {
-      listStyle: "none",
-      padding: 0,
-    },
-    listItem: {
-      marginBottom: "10px",
-      cursor: "pointer",
-      opacity: 0.9,
-    },
-    logo: {
-      fontSize: "22px",
-      marginBottom: "15px",
-      fontWeight: "bold",
-    },
-    bottom: {
-      textAlign: "center",
-      padding: "20px",
-      borderTop: "1px solid rgba(255,255,255,0.3)",
-    },
-    payments: {
-      marginBottom: "10px",
-    },
-    paymentImg: {
-      margin: "0 10px",
-      height: "30px",
-    },
-  };
-
   return (
-    <footer style={styles.footer}>
-      {/* TOP */}
-      <div style={styles.top}>
-        <button style={styles.button}>LOCATE STORE</button>
-      </div>
+    <div style={{ background: "#800000", color: "white", padding: "40px 30px" }}>
+      
+      {/* MAIN ROW */}
+      <div style={{
+        display: "flex",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+        gap: "40px"
+      }}>
 
-      {/* MAIN */}
-      <div style={styles.container}>
-        {/* BRAND */}
-        <div style={styles.col}>
-          <h2 style={styles.logo}>Sree DhanaLakshmi Jewelry</h2>
-          <p>
-            Kankipadu<br />
-            Vijayawada<br />
-            521151
+        {/* 🔥 LEFT SIDE - LEGACY */}
+        <div style={{ minWidth: "200px" }}>
+          <h1 style={{
+  fontSize: "60px",
+  fontFamily: "'Playfair Display', serif",
+  color: "#000",
+  marginBottom: "5px"
+}}>
+  26
+</h1>
+
+          <p style={{
+            fontSize: "18px",
+            letterSpacing: "2px"
+          }}>
+            YEARS OF LEGACY
           </p>
-          <p>📧 ecomsupport@sdjewelry.com</p>
-          <p>📧 appsupport@sdjewelry.com</p>
-          <p>📞 9948565729</p>
+
+          <div style={{
+            marginTop: "15px",
+            display: "flex",
+            gap: "12px",
+            fontSize: "16px"
+          }}>
+            <FaFacebookF />
+            <FaInstagram />
+            <FaLinkedinIn />
+            <FaTwitter />
+            <FaYoutube />
+            <FaPinterest />
+          </div>
         </div>
 
-        {/* POLICIES */}
-        <div style={styles.col}>
-          <h4 style={styles.heading}>Policies</h4>
-          <ul style={styles.list}>
-            <li style={styles.listItem}>Privacy Policy</li>
-            <li style={styles.listItem}>Terms & Conditions</li>
-            <li style={styles.listItem}>Shipping Policy</li>
-            <li style={styles.listItem}>Return Policy</li>
-            <li style={styles.listItem}>Cancellation Policy</li>
-          </ul>
-        </div>
+        {/* 🔥 RIGHT SIDE - LINKS */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, minmax(150px, 1fr))",
+          gap: "30px",
+          flex: 1
+        }}>
 
-        {/* CUSTOMER */}
-        <div style={styles.col}>
-          <h4 style={styles.heading}>Customer Service</h4>
-          <ul style={styles.list}>
-            <li style={styles.listItem}>Contact Us</li>
-            <li style={styles.listItem}>FAQs</li>
-            <li style={styles.listItem}>Return Request</li>
-            <li style={styles.listItem}>Payment Options</li>
-            <li style={styles.listItem}>Order Tracking</li>
-          </ul>
-        </div>
+          <div>
+            <h4>Sree DhanaLakshmi Jewelry</h4>
+            <p>Kankipadu</p>
+            <p>Vijayawada</p>
+            <p>Krishna District</p>
+            <p>📧 ecomsupport@sdjewelry.com</p>
+            <p>📞 9948565729</p>
+          </div>
 
-        {/* ABOUT */}
-        <div style={styles.col}>
-          <h4 style={styles.heading}>About</h4>
-          <ul style={styles.list}>
-            <li style={styles.listItem}>About Us</li>
-            <li style={styles.listItem}>Careers</li>
-            <li style={styles.listItem}>Store Locator</li>
-            <li style={styles.listItem}>Investor Info</li>
-            <li style={styles.listItem}>Testimonials</li>
-          </ul>
-        </div>
+          <div>
+            <h4>Policies</h4>
+            <p>Privacy Policy</p>
+            <p>Terms</p>
+            <p>Shipping</p>
+            <p>Returns</p>
+          </div>
 
-        {/* QUICK LINKS */}
-        <div style={styles.col}>
-          <h4 style={styles.heading}>Quick Links</h4>
-          <ul style={styles.list}>
-            <li style={styles.listItem}>Blog</li>
-            <li style={styles.listItem}>CSR</li>
-            <li style={styles.listItem}>News & Events</li>
-            <li style={styles.listItem}>Sitemap</li>
-            <li style={styles.listItem}>Videos</li>
-          </ul>
+          <div>
+            <h4>Customer</h4>
+            <p>Contact</p>
+            <p>FAQs</p>
+            <p>Tracking</p>
+          </div>
+
+          <div>
+            <h4>About</h4>
+            <p>About Us</p>
+            <p>Careers</p>
+            <p>Store Locator</p>
+          </div>
+
         </div>
       </div>
 
       {/* BOTTOM */}
-      <div style={styles.bottom}>
-        <div style={styles.payments}>
-          <img
-            style={styles.paymentImg}
-            src="https://img.icons8.com/color/48/visa.png"
-            alt="visa"
-          />
-          <img
-            style={styles.paymentImg}
-            src="https://img.icons8.com/color/48/mastercard.png"
-            alt="mc"
-          />
-          <img
-            style={styles.paymentImg}
-            src="https://img.icons8.com/color/48/rupay.png"
-            alt="rupay"
-          />
-        </div>
-        <p>© 2026 Sree DhanaLakshmi Jewelry Pvt Ltd. All rights reserved.</p>
+      <div style={{
+        textAlign: "center",
+        marginTop: "25px",
+        fontSize: "13px"
+      }}>
+        © {new Date().getFullYear()} Sree DhanaLakshmi Jewelry
       </div>
-    </footer>
+
+    </div>
   );
 };
 

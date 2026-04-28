@@ -103,7 +103,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "space-between",
     padding: "15px 40px",
-    borderBottom: "1px solid #eee",
+    borderBottom: "#f0e68c",
   },
   logo: {
     color: "#8B0000",
@@ -137,7 +137,7 @@ const styles = {
     justifyContent: "center",
     gap: "30px",
     padding: "10px",
-    background: "#f5f5f5",
+    background: "#ffd700",
   },
 };
 
