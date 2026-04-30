@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+
 import {
   FaSearch,
   FaCamera,
@@ -7,12 +9,16 @@ import {
   FaUser,
   FaShoppingCart,
   FaGem,
-  FaHome,
 } from "react-icons/fa";
 
-const Navbar = ({ search, setSearch }) =>
-   {
+import { WishlistContext } from "../context/WishlistContext";
+import { useCart } from "../context/CartContext";
+
+const Navbar = ({ search, setSearch }) => {
   const [listening, setListening] = useState(false);
+
+  const { wishlist } = useContext(WishlistContext);
+  const { cart } = useCart();
 
   // 🎤 Voice Search
   const handleVoiceSearch = () => {
@@ -29,7 +35,7 @@ const Navbar = ({ search, setSearch }) =>
     setListening(true);
 
     recognition.onresult = (event) => {
-      setSearch(event.results[0][0].transcript); // ✅ FIXED
+      setSearch(event.results[0][0].transcript);
       setListening(false);
     };
 
@@ -46,6 +52,7 @@ const Navbar = ({ search, setSearch }) =>
 
   return (
     <div>
+      {/* TOP NAVBAR */}
       <div style={styles.navbar}>
         <h2 style={styles.logo}>Sree DhanaLakshmi Jewelry</h2>
 
@@ -56,8 +63,8 @@ const Navbar = ({ search, setSearch }) =>
           <input
             type="text"
             placeholder="Search jewelry..."
-            value={search} // ✅ FIXED
-            onChange={(e) => setSearch(e.target.value)} // ✅ FIXED
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             style={styles.input}
           />
 
@@ -75,16 +82,31 @@ const Navbar = ({ search, setSearch }) =>
           />
         </div>
 
+        {/* RIGHT ICONS WITH BADGES */}
         <div style={styles.rightIcons}>
-          <FaHeart />
-          <FaUser />
-          <FaShoppingCart />
+          
+          {/* ❤️ Wishlist */}
+          <Link to="/wishlist" style={styles.iconWrapper}>
+            <FaHeart size={18} />
+            {wishlist.length > 0 && (
+              <span style={styles.badge}>{wishlist.length}</span>
+            )}
+          </Link>
+
+          {/* 👤 User */}
+          <FaUser size={18} />
+
+          {/* 🛒 Cart */}
+          <Link to="/cart" style={styles.iconWrapper}>
+            <FaShoppingCart size={18} />
+            {cart.length > 0 && (
+              <span style={styles.badge}>{cart.length}</span>
+            )}
+          </Link>
         </div>
       </div>
-
       {/* MENU */}
       <div style={styles.menu}>
-        <span><FaHome /> Home</span>
         <span><FaGem /> Gold</span>
         <span>💎 Diamond</span>
         <span>💍 Rings</span>
@@ -103,7 +125,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "space-between",
     padding: "15px 40px",
-    borderBottom: "#f0e68c",
+    borderBottom: "1px solid #ddd",
   },
   logo: {
     color: "#8B0000",
@@ -131,6 +153,32 @@ const styles = {
   rightIcons: {
     display: "flex",
     gap: "20px",
+    alignItems: "center",
+  },
+
+  /* 🔥 NEW STYLES */
+  iconWrapper: {
+    position: "relative",
+    display: "inline-block",
+  },
+  badge: {
+    position: "absolute",
+    top: "-8px",
+    right: "-10px",
+    background: "red",
+    color: "white",
+    borderRadius: "50%",
+    padding: "3px 6px",
+    fontSize: "12px",
+    fontWeight: "bold",
+  },
+
+  quickLinks: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "30px",
+    padding: "10px",
+    fontWeight: "bold",
   },
   menu: {
     display: "flex",
