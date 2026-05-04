@@ -128,7 +128,7 @@ const styles = {
     borderBottom: "1px solid #ddd",
   },
   logo: {
-    color: "#8B0000",
+    color: "#f0e68c",
     fontWeight: "bold",
   },
   searchContainer: {
@@ -154,6 +154,7 @@ const styles = {
     display: "flex",
     gap: "20px",
     alignItems: "center",
+    background: "#f0e68c",
   },
 
   /* 🔥 NEW STYLES */
@@ -185,7 +186,7 @@ const styles = {
     justifyContent: "center",
     gap: "30px",
     padding: "10px",
-    background: "#ffd700",
+   background: "#f0e68c",
   },
 };
 

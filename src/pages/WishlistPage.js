@@ -5,6 +5,8 @@ const WishlistPage = () => {
   const { wishlist, removeFromWishlist } = useContext(WishlistContext);
 
   return (
+    <div className="page-container">
+
     <div style={{ padding: "20px" }}>
       <h1>Wishlist ❤️</h1>
 
@@ -23,6 +25,7 @@ const WishlistPage = () => {
         ))
       )}
     </div>
+  </div>
   );
 };
 

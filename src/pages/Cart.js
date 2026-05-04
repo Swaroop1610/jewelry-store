@@ -1,21 +1,20 @@
-import React from 'react';
+import PageLayout from "../components/PageLayout";
 
 const Cart = ({ cart }) => {
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Your Cart</h2>
+    <PageLayout>
+      <h2>Cart 🛒</h2>
 
       {cart.length === 0 ? (
-        <p>No items in cart</p>
+        <p>Your cart is empty</p>
       ) : (
-        cart.map((item, index) => (
-          <div key={index}>
-            <h3>{item.name}</h3>
-            <p>${item.price}</p>
+        cart.map((item) => (
+          <div key={item.id}>
+            <p>{item.name}</p>
           </div>
         ))
       )}
-    </div>
+    </PageLayout>
   );
 };
 

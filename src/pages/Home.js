@@ -2,70 +2,60 @@ import React, { useEffect, useState } from "react";
 import { generateContent } from "../gemini";
 import { Link } from "react-router-dom";
 
-
 const Home = ({ search = "" }) => {
   const [products, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
 
-  // LOGIN STATE
   const [showLogin, setShowLogin] = useState(false);
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
   const [step, setStep] = useState("phone");
 
-  // AI STATE
   const [aiResponse, setAiResponse] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 🔥 FALLBACK PRODUCTS (used if backend empty)
   const fallbackProducts = [
     {
       id: 1,
       name: "Gold Necklace",
       price: 299,
-      image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400",
+      image: "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?q=80&w=800",
     },
     {
       id: 2,
       name: "Diamond Ring",
       price: 499,
-      image: "https://images.unsplash.com/photo-1589987607627-ec7a5f5d88c7?w=400",
+      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800",
     },
     {
       id: 3,
       name: "Silver Earrings",
       price: 129,
-      image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400",
+      image: "https://images.unsplash.com/photo-1629224316810-9d8805b95e76?q=80&w=800",
     },
     {
       id: 4,
       name: "Bridal Set",
       price: 899,
-      image: "https://images.unsplash.com/photo-1620656798579-1984d6b9b6a3?w=400",
+      image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?q=80&w=800",
     },
     {
       id: 5,
       name: "Gold Bracelet",
       price: 199,
-      image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=400",
+      image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=800",
     }
   ];
 
-  // FETCH PRODUCTS FROM BACKEND
   useEffect(() => {
     fetch("http://127.0.0.1:5000/products")
       .then((res) => res.json())
       .then((data) => {
-        if (data.length === 0) {
-          setProducts(fallbackProducts); // fallback
-        } else {
-          setProducts(data);
-        }
+        setProducts(data.length ? data : fallbackProducts);
       })
       .catch(() => setProducts(fallbackProducts));
   }, []);
 
-  // AI
   const handleAiConsultation = async () => {
     setLoading(true);
     try {
@@ -79,7 +69,6 @@ const Home = ({ search = "" }) => {
     setLoading(false);
   };
 
-  // WISHLIST
   const toggleWishlist = (product) => {
     if (wishlist.find((p) => p.id === product.id)) {
       setWishlist(wishlist.filter((p) => p.id !== product.id));
@@ -88,30 +77,38 @@ const Home = ({ search = "" }) => {
     }
   };
 
-  // FILTER
   const filteredProducts = products.filter((p) =>
     p.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div>
+
       {/* HERO */}
       <div
         style={{
           backgroundImage: "url('/hero-gold.png')",
           height: "60vh",
           backgroundSize: "cover",
+          backgroundPosition: "center",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           color: "white",
+          position: "relative"
         }}
       >
-        <div style={{ textAlign: "center" }}>
+        <div style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          background: "rgba(0,0,0,0.5)"
+        }} />
+
+        <div style={{ textAlign: "center", zIndex: 2 }}>
           <h1 style={{ fontSize: "42px" }}>
             Timeless Beauty, Crafted for You
           </h1>
-
           <p>Discover handcrafted jewelry designed for every occasion</p>
 
           <button
@@ -145,33 +142,50 @@ const Home = ({ search = "" }) => {
 
       <div style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-        gap: "20px",
+        gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+        gap: "25px",
         padding: "20px"
       }}>
         {filteredProducts.map((product) => (
-          <div key={product.id} style={{
-            border: "1px solid #eee",
-            padding: "10px",
-            textAlign: "center",
-            borderRadius: "10px"
-          }}>
-            <Link to={`/product/${product.id}`}>
-              <img src={product.image} width="150" />
-              <h3>{product.name}</h3>
-              <p>${product.price}</p>
+          <div key={product.id} className="product-card">
+
+            <Link to={`/product/${product.id}`} style={{ textDecoration: "none", color: "black" }}>
+              
+              {/* 🔥 UPDATED IMAGE WRAPPER */}
+              <div className="image-container">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="product-image"
+                />
+              </div>
+
+              <div style={{ padding: "15px" }}>
+                <h3>{product.name}</h3>
+                <p>${product.price}</p>
+              </div>
             </Link>
 
-            <button>Add to Cart</button>
+            <div style={{ display: "flex", justifyContent: "space-between", padding: "10px" }}>
+              <button style={{
+                background: "#d4af37",
+                border: "none",
+                color: "white",
+                padding: "8px 12px",
+                borderRadius: "6px"
+              }}>
+                Add to Cart
+              </button>
 
-            <button onClick={() => toggleWishlist(product)}>
-              {wishlist.find((p) => p.id === product.id) ? "❤️" : "🤍"}
-            </button>
+              <button onClick={() => toggleWishlist(product)}>
+                {wishlist.find((p) => p.id === product.id) ? "❤️" : "🤍"}
+              </button>
+            </div>
           </div>
         ))}
       </div>
 
-      {/* LOGIN MODAL */}
+      {/* LOGIN MODAL (unchanged) */}
       {showLogin && (
         <div style={{
           position: "fixed",
@@ -260,9 +274,6 @@ const Home = ({ search = "" }) => {
                     if (res.ok) {
                       alert("Login success 🎉");
                       setShowLogin(false);
-                      setStep("phone");
-                      setPhone("");
-                      setOtp("");
                     } else {
                       alert("Invalid OTP");
                     }
