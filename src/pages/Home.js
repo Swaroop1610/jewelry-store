@@ -88,7 +88,7 @@ const Home = ({ search = "" }) => {
       <div
         style={{
           backgroundImage: "url('/hero-gold.png')",
-          height: "60vh",
+          height: "80vh",
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
